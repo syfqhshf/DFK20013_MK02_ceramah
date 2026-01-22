@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengesahan Tempahan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Iklan</a>
+        <a href="pengesahan.html">Tempahan</a>
+    </nav>
+    <header>
+        <h1>Pengesahan Tempahan Ceramah</h1>
+        <p>Butiran tempahan anda telah diproses.</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Pengesahan Tempahan</h2>
+            <div id="confirmationContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Baca data dari localStorage dan papar
+        const nama = localStorage.getItem('nama');
+        const email = localStorage.getItem('email');
+        const telefon = localStorage.getItem('telefon');
+        const kategori = localStorage.getItem('kategori');
+        const slot = localStorage.getItem('slot');
+        const bukti = localStorage.getItem('bukti');
+        const jumlahYuran = localStorage.getItem('jumlahYuran');
+
+        if (nama) {
+            const confirmationContent = `
+                <p><strong>Nama Penuh:</strong> ${nama}</p>
+                <p><strong>E-mel:</strong> ${email}</p>
+                <p><strong>Telefon:</strong> ${telefon}</p>
+                <p><strong>Kategori:</strong> ${kategori}</p>
+                <p><strong>Bilangan Slot:</strong> ${slot}</p>
+                <p><strong>Bukti Pembayaran:</strong> ${bukti}</p>
+                <p><strong>Jumlah Yuran:</strong> RM${parseFloat(jumlahYuran).toFixed(2)}</p>
+                <p>Terima kasih atas pendaftaran anda!</p>
+            `;
+            document.getElementById('confirmationContent').innerHTML = confirmationContent;
+            // Hapus data dari localStorage selepas papar
+            localStorage.clear();
+        } else {
+            document.getElementById('confirmationContent').innerHTML = '<p>Tiada data tempahan ditemui. Sila kembali ke halaman utama untuk membuat tempahan.</p>';
+        }
+    </script>
+</body>
+</html>

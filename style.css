@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #4682B4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: #f0ffff;
+    color:black;
+    text-align: center;
+    padding: 60px 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    font-size: 3em;
+    margin: 0;
+    font-weight: 700;
+}
+
+header p {
+    font-size: 1.2em;
+    margin: 10px 0 0;
+    font-weight: 300;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.section {
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.3s ease;
+}
+
+.section:hover {
+    transform: translateY(-5px);
+}
+
+.section h2 {
+    color: #4682B4;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.speaker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.speaker img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 30px;
+    border: 5px solid #4682B4;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.speaker div h3 {
+    margin: 0;
+    color: #333;
+    font-weight: 700;
+}
+
+.speaker div p {
+    margin: 5px 0;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .speaker {
+        flex-direction: column;
+        text-align: center;
+    }
+    .speaker img {
+        margin-bottom: 20px;
+        margin-right: 0;
+    }
+    header h1 {
+        font-size: 2em;
+    }
+    header p {
+        font-size: 1em;
+    }
+}
+
+nav {
+    background: #4682B4;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
