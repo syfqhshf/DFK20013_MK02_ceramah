@@ -4,29 +4,33 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background: #4682B4;
-    color: #333;
+    background: #d4c5b9;
+    color: #fff;
     line-height: 1.6;
 }
 
 header {
-    background: #f0ffff;
-    color:black;
+    background: #07662f;
+    color: #eee5de;
     text-align: center;
     padding: 60px 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 12px 24px rgba(7, 102, 47, 0.4);
 }
 
 header h1 {
     font-size: 3em;
     margin: 0;
     font-weight: 700;
+    letter-spacing: -1px;
+    color: #fff;
 }
 
 header p {
     font-size: 1.2em;
     margin: 10px 0 0;
     font-weight: 300;
+    opacity: 0.95;
+    color: #e8ddd0;
 }
 
 .container {
@@ -37,24 +41,27 @@ header p {
 
 .section {
     margin-bottom: 40px;
-    background: rgba(255, 255, 255, 0.95);
+    background: #cb7885;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 40px rgba(203, 120, 133, 0.2);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    transition: transform 0.3s ease;
+    border: 2px solid #07662f;
+    transition: all 0.3s ease;
 }
 
 .section:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 50px rgba(203, 120, 133, 0.3);
+    border-color: #07662f;
 }
 
 .section h2 {
-    color: #4682B4;
+    color: #fcebf1;
     margin-bottom: 20px;
     font-weight: 700;
     text-align: center;
+    font-size: 1.8em;
 }
 
 .speaker {
@@ -68,19 +75,20 @@ header p {
     height: 150px;
     border-radius: 50%;
     margin-right: 30px;
-    border: 5px solid #4682B4;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border: 5px solid #07662f;
+    box-shadow: 0 8px 20px rgba(7, 102, 47, 0.25);
 }
 
 .speaker div h3 {
     margin: 0;
-    color: #333;
+    color: #fff;
     font-weight: 700;
 }
 
 .speaker div p {
     margin: 5px 0;
     font-weight: 400;
+    color: #fff;
 }
 
 @media (max-width: 768px) {
@@ -101,19 +109,144 @@ header p {
 }
 
 nav {
-    background: #4682B4;
-    padding: 10px 0;
+    background: #07662f;
+    padding: 15px 0;
     text-align: center;
+    box-shadow: 0 6px 16px rgba(7, 102, 47, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 nav a {
-    color: white;
+    color: #d4c5b9;
     text-decoration: none;
     margin: 0 20px;
     font-weight: 700;
     font-size: 1.1em;
+    padding: 8px 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 nav a:hover {
+    background: #cb7885;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+}
+
+.confirmation-details {
+    background: #d4c5b9;
+    padding: 25px;
+    border-radius: 10px;
+    border: 2px solid #07662f;
+    margin-top: 20px;
+    box-shadow: 0 6px 16px rgba(203, 120, 133, 0.25);
+}
+
+.confirmation-details p {
+    margin: 12px 0;
+    font-size: 1.05em;
+    color: #07662f;
+}
+
+.confirmation-details strong {
+    color: #07662f;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="file"],
+select {
+    padding: 12px;
+    margin: 8px 0;
+    border: 2px solid #07662f;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s ease;
+    background-color: #f5f1e8;
+    color: #333;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus,
+select:focus {
+    outline: none;
+    border-color: #07662f;
+    box-shadow: 0 0 12px rgba(7, 102, 47, 0.3);
+    background-color: #cb7885;
+    color: #fff;
+}
+
+button[type="submit"],
+button[onclick*="download"] {
+    padding: 14px 28px;
+    margin-top: 15px;
+    background: #f5f1e8;
+    color: #07662f;
+    border: 2px solid #07662f;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 16px rgba(212, 197, 185, 0.3);
+}
+
+button[type="submit"]:hover,
+button[onclick*="download"]:hover {
+    background: #cb7885;
+    color: #fff;
+    border-color: #07662f;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(203, 120, 133, 0.35);
+}
+
+button[type="submit"]:active,
+button[onclick*="download"]:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(7, 102, 47, 0.2);
+}
+
+label {
+    font-weight: 600;
+    margin-top: 10px;
+    color: #fff;
+}
+
+input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: #07662f;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #d4c5b9;
     text-decoration: underline;
+}
+
+a:visited {
+    color: #fff;
 }

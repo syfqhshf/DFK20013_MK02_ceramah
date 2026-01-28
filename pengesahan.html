@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengesahan Tempahan</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <nav>
@@ -19,12 +20,14 @@
     <div class="container">
         <div class="section">
             <h2>Pengesahan Tempahan</h2>
-            <div id="confirmationContent"></div>
+            <div id="confirmationContent" class="confirmation-details"></div>
+            <button onclick="downloadConfirmation()">Download Ticket</button>
         </div>
     </div>
 
     <script>
         // Baca data dari localStorage dan papar
+        let userData = {};
         const nama = localStorage.getItem('nama');
         const email = localStorage.getItem('email');
         const telefon = localStorage.getItem('telefon');
@@ -34,6 +37,7 @@
         const jumlahYuran = localStorage.getItem('jumlahYuran');
 
         if (nama) {
+            userData = { nama, email, telefon, kategori, slot, bukti, jumlahYuran };
             const confirmationContent = `
                 <p><strong>Nama Penuh:</strong> ${nama}</p>
                 <p><strong>E-mel:</strong> ${email}</p>
@@ -49,6 +53,153 @@
             localStorage.clear();
         } else {
             document.getElementById('confirmationContent').innerHTML = '<p>Tiada data tempahan ditemui. Sila kembali ke halaman utama untuk membuat tempahan.</p>';
+        }
+
+        function downloadConfirmation() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Generate ticket number
+            const ticketNo = 'TKT-' + Date.now().toString().slice(-8);
+            
+            // Header dengan dusty rose (matcha strawberry)
+            doc.setFillColor(203, 120, 133);
+            doc.rect(0, 0, 210, 40, 'F');
+            
+            // Tajuk ticket
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(20);
+            doc.setFont('helvetica', 'bold');
+            doc.text('TICKET CERAMAH', 105, 20, { align: 'center' });
+            doc.setFontSize(10);
+            doc.text('Disiplin & Produktif: Kunci Kejayaan!', 105, 30, { align: 'center' });
+            
+            // Reset warna teks
+            doc.setTextColor(0, 0, 0);
+            
+            // Ticket number dengan aksen warna sage green
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(159, 170, 116);
+            doc.setFont('helvetica', 'bold');
+            doc.text(`No. Ticket: ${ticketNo}`, 15, 50);
+            doc.setTextColor(0, 0, 0);
+            
+            // Garis pemisah
+            doc.setDrawColor(203, 120, 133);
+            doc.setLineWidth(2);
+            doc.line(15, 55, 195, 55);
+            
+            // BUTIRAN CERAMAH
+            doc.setFontSize(11);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(7, 102, 47);
+            doc.text('BUTIRAN CERAMAH', 15, 65);
+            doc.setTextColor(0, 0, 0);
+            
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Tarikh:', 15, 77);
+            doc.setFont('helvetica', 'bold');
+            doc.text('15 Februari 2026', 55, 77);
+            
+            doc.setFont('helvetica', 'normal');
+            doc.text('Masa:', 15, 87);
+            doc.setFont('helvetica', 'bold');
+            doc.text('9:00 AM - 1:30 PM', 55, 87);
+            
+            doc.setFont('helvetica', 'normal');
+            doc.text('Lokasi:', 15, 97);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Dewan Harumanis, Politeknik Tuanku', 55, 97);
+            doc.text('Syed Sirajuddin', 55, 103);
+            
+            doc.setFont('helvetica', 'normal');
+            doc.text('Penceramah:', 15, 113);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Suhaila Mustaffa', 55, 113);
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(9);
+            doc.text('Pakar Strategi Pengurusan Masa', 55, 119);
+            
+            // Garis pemisah
+            doc.setLineWidth(2);
+            doc.setDrawColor(203, 120, 133);
+            doc.line(15, 125, 195, 125);
+            
+            // BUTIRAN PESERTA
+            doc.setFontSize(11);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(7, 102, 47);
+            doc.text('BUTIRAN PESERTA', 15, 135);
+            doc.setTextColor(0, 0, 0);
+            
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Nama:', 15, 147);
+            doc.setFont('helvetica', 'bold');
+            doc.text(`${userData.nama || '-'}`, 55, 147);
+            
+            doc.setFont('helvetica', 'normal');
+            doc.text('E-mel:', 15, 157);
+            doc.setFont('helvetica', 'bold');
+            doc.text(`${userData.email || '-'}`, 55, 157);
+            
+            doc.setFont('helvetica', 'normal');
+            doc.text('Telefon:', 15, 167);
+            doc.setFont('helvetica', 'bold');
+            doc.text(`${userData.telefon || '-'}`, 55, 167);
+            
+            doc.setFont('helvetica', 'normal');
+            doc.text('Kategori:', 15, 177);
+            doc.setFont('helvetica', 'bold');
+            doc.text(`${userData.kategori || '-'}`, 55, 177);
+            
+            doc.setFont('helvetica', 'normal');
+            doc.text('Bilangan Slot:', 15, 187);
+            doc.setFont('helvetica', 'bold');
+            doc.text(`${userData.slot || '0'} slot`, 55, 187);
+            
+            // Garis pemisah
+            doc.setLineWidth(2);
+            doc.setDrawColor(203, 120, 133);
+            doc.line(15, 193, 195, 193);
+            
+            // MAKLUMAT PEMBAYARAN
+            doc.setFontSize(11);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(7, 102, 47);
+            doc.text('MAKLUMAT PEMBAYARAN', 15, 203);
+            doc.setTextColor(0, 0, 0);
+            
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Harga per Slot:', 15, 215);
+            doc.setFont('helvetica', 'bold');
+            doc.text('RM90.00', 60, 215);
+            
+            doc.setFont('helvetica', 'normal');
+            doc.text('Jumlah Yuran:', 15, 225);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(0, 0, 0);
+            doc.setFontSize(13);
+            doc.text(`RM${parseFloat(userData.jumlahYuran || 0).toFixed(2)}`, 60, 225);
+            
+            // Reset dan footer
+            doc.setTextColor(0, 0, 0);
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'italic');
+            doc.setDrawColor(203, 120, 133);
+            doc.line(15, 235, 195, 235);
+            doc.text('Terima kasih atas pendaftaran anda!', 105, 245, { align: 'center' });
+            doc.text('Sila bawa ticket ini ke lokasi ceramah pada tarikh yang ditetapkan.', 105, 251, { align: 'center' });
+            
+            // Border ticket
+            doc.setDrawColor(203, 120, 133);
+            doc.setLineWidth(3);
+            doc.rect(10, 10, 190, 250);
+            
+            doc.save('ticket_pengesahan.pdf');
         }
     </script>
 </body>
